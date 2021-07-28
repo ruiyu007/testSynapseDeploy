@@ -1,0 +1,17 @@
+{
+	"name": "Test2107020060000129",
+	"properties": {
+		"content": {
+			"query": "CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'M$tr!2345678';\nGO\n\nCREATE DATABASE SCOPED CREDENTIAL [https://rhantestsa01.blob.core.windows.net/test2107020060000129]\nWITH IDENTITY='Managed Identity'\n\n-- 認証情報を利用し、外部データソースを作成\nCREATE EXTERNAL DATA SOURCE ProductionDataSource WITH (\n    LOCATION = 'https://rhantestsa01.blob.core.windows.net',\n    CREDENTIAL = [https://rhantestsa01.blob.core.windows.net/test2107020060000129]\n);\n\n\nCREATE Database DataLakeAcsessDB02 COLLATE Latin1_General_100_CI_AI_SC_UTF8\n\nSELECT * FROM OPENROWSET\n(\n  BULK 'test2107020060000129/result-00200.csv',\n \n    DATA_SOURCE = 'ProductionDataSource',\n    FORMAT = 'CSV', PARSER_VERSION = '2.0'\n) as [result]\n\nSELECT * FROM OPENROWSET\n(\n  BULK 'test2107020060000129/result-00200.csv',\n \n    DATA_SOURCE = 'ProductionDataSource',\n    FORMAT = 'CSV', PARSER_VERSION = '2.0'\n)  with (\n  Col1\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8 ,\nCol2\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol3\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol4\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol5\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol6\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol7\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol8\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol9\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol10\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol11\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol12\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol13\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol14\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol15\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol16\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol17\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol18\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol19\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8,\nCol20\tvarchar(60) collate Japanese_XJIS_100_CI_AI_SC_UTF8\n) as r\n\n where (C2 BETWEEN '11:32:00' AND '11:36:00' ) AND C6 = 'Z1DR10C0'\n\nSELECT * FROM OPENROWSET\n(\n  BULK 'test2107020060000129/result-00200.csv',\n \n    DATA_SOURCE = 'ProductionDataSource',\n    FORMAT = 'CSV', PARSER_VERSION = '2.0'\n)  with (\n  Col1\tvarchar(60)  ,\nCol2\tvarchar(60) ,\nCol3\tvarchar(60) ,\nCol4\tvarchar(60) ,\nCol5\tvarchar(60) ,\nCol6\tvarchar(60) ,\nCol7\tvarchar(60) ,\nCol8\tvarchar(60) ,\nCol9\tvarchar(60) ,\nCol10\tvarchar(60) ,\nCol11\tvarchar(60) ,\nCol12\tvarchar(60) ,\nCol13\tvarchar(60) ,\nCol14\tvarchar(60) ,\nCol15\tvarchar(60) ,\nCol16\tvarchar(60) ,\nCol17\tvarchar(60) ,\nCol18\tvarchar(60) ,\nCol19\tvarchar(60) ,\nCol20\tvarchar(60) \n) as r\n\n\nSELECT * FROM OPENROWSET\n(\n  BULK 'test2107020060000129/result-00064.csv',\n \n    DATA_SOURCE = 'ProductionDataSource',\n    FORMAT = 'CSV', PARSER_VERSION = '2.0'\n) AS [result]\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "DataLakeAcsessDB02"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
